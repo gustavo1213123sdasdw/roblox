@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Clínica Veterinária - Cadastro e Atendimento</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      margin: 30px auto;
+      max-width: 500px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    h1, h2 {
+      color: #323e49;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 15px;
+      display: block;
+      color: #536e8a;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 6px;
+      border: 1.5px solid #bdc3c7;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 5px #3498db;
+    }
+
+    button {
+      background-color: #3498db;
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 12px 20px;
+      margin-top: 20px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 3px 6px rgba(52, 152, 219, 0.4);
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #btnResetarHistorico {
+      background-color: #e9321e;
+      margin-left: 10px;
+      box-shadow: 0 3px 6px rgba(192, 38, 21, 0.5);
+    }
+
+    #btnResetarHistorico:hover {
+      background-color: #ea4b3a;
+    }
+
+    #resultado {
+      margin-top: 25px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    #historico {
+      margin-top: 35px;
+      border-top: 2px solid #ecf0f1;
+      padding-top: 20px;
+    }
+
+    .itemHistorico {
+      background: #ecf0f1;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #34495e;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Cadastro de Usuário e Animal</h1>
+
+  <label for="nomeUsuario">Nome do usuário (dono):</label>
+  <input type="text" id="nomeUsuario" />
+
+  <label for="nomeAnimal">Nome do gato:</label>
+  <input type="text" id="nomeAnimal" />
+
+  <label for="racaAnimal">Raça do gato:</label>
+  <input type="text" id="racaAnimal" />
+
+  <button id="btnCadastrarMostrar">Cadastrar e Mostrar Atendimento</button>
+  <button id="btnResetarHistorico" style="margin-left:10px;">Resetar Histórico</button>
+
+  <p id="resultado"></p>
+
+  <div id="historico">
+    <h2>Histórico de Atendimentos</h2>
+    <div id="listaHistorico"></div>
+  </div>
+
+  <script>
+    const medicos = ['Robson', 'Carla'];
+    const historico = [];
+
+    function medicoAleatorio() {
+      const index = Math.floor(Math.random() * medicos.length);
+      return medicos[index];
+    }
+
+    function montarFrase(usuario, animal, medico) {
+      return `O usuário ${usuario} trouxe seu gato ${animal.nome} da raça ${animal.raca} que será atendido pelo veterinário ${medico}.`;
+    }
+
+    function atualizarHistorico() {
+      const div = document.getElementById('listaHistorico');
+      div.innerHTML = '';
+      historico.forEach(item => {
+        const p = document.createElement('p');
+        p.className = 'itemHistorico';
+        p.textContent = `Usuário: ${item.usuario} | Animal: ${item.animal.nome} (${item.animal.raca}) | Veterinário(a): ${item.medico}`;
+        div.appendChild(p);
+      });
+    }
+
+    document.getElementById('btnCadastrarMostrar').addEventListener('click', () => {
+      const nomeUsuario = document.getElementById('nomeUsuario').value.trim();
+      const nomeAnimal = document.getElementById('nomeAnimal').value.trim();
+      const racaAnimal = document.getElementById('racaAnimal').value.trim();
+
+      if (!nomeUsuario || !nomeAnimal || !racaAnimal) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+
+      const animal = { nome: nomeAnimal, raca: racaAnimal };
+      const medico = medicoAleatorio();
+
+      historico.push({ usuario: nomeUsuario, animal, medico });
+
+      const frase = montarFrase(nomeUsuario, animal, medico);
+      document.getElementById('resultado').textContent = frase;
+
+      atualizarHistorico();
+
+      document.getElementById('nomeUsuario').value = '';
+      document.getElementById('nomeAnimal').value = '';
+      document.getElementById('racaAnimal').value = '';
+    });
+
+    document.getElementById('btnResetarHistorico').addEventListener('click', () => {
+      historico.length = 0;
+      atualizarHistorico();
+      document.getElementById('resultado').textContent = '';
+    });
+  </script>
+</body>
+</html>
