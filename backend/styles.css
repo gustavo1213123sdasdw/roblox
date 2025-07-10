@@ -1,0 +1,91 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffffff;
+  color: #333;
+  margin: 30px auto;
+  max-width: 500px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+h1, h2 {
+  color: #18446f;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  margin-top: 15px;
+  display: block;
+  color: #28629c;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1.5px solid #0099ff;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px #3498db;
+}
+
+button {
+  background-color: #3498db;
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: 12px 20px;
+  margin-top: 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 6px rgba(52, 152, 219, 0.4);
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+#btnResetarHistorico {
+  background-color: #c89791;
+  margin-left: 10px;
+  box-shadow: 0 3px 6px rgba(231, 76, 60, 0.5);
+}
+
+#btnResetarHistorico:hover {
+  background-color: #850d00;
+}
+
+#resultado {
+  margin-top: 25px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+#historico {
+  margin-top: 35px;
+  border-top: 2px solid #ecf0f1;
+  padding-top: 20px;
+}
+
+.itemHistorico {
+  background: #ecf0f1;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #34495e;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
